@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roblox Characters Store</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Roblox Characters Store</h1>
+    <button onclick="mostrarCarrinho()">🛒 Carrinho (<span id="cart-count">0</span>)</button>
+  </header>
+
+  <h2>Personagens Disponíveis</h2>
+  <div class="produtos-container">
+    <div class="produto-card">
+      <img src="https://via.placeholder.com/600x400?text=Speedy+Roblox" alt="Personagem Speedy">
+      <p>Speedy - R$9</p>
+      <button onclick="adicionarAoCarrinho('Speedy - Avatar', 9)">Adicionar</button>
+    </div>
+    <div class="produto-card">
+      <img src="https://via.placeholder.com/600x400?text=Blaze+Roblox" alt="Personagem Blaze">
+      <p>Blaze - R$8</p>
+      <button onclick="adicionarAoCarrinho('Blaze - Avatar', 8)">Adicionar</button>
+    </div>
+    <div class="produto-card">
+      <img src="https://via.placeholder.com/600x400?text=Aqua+Roblox" alt="Personagem Aqua">
+      <p>Aqua - R$10</p>
+      <button onclick="adicionarAoCarrinho('Aqua - Avatar', 10)">Adicionar</button>
+    </div>
+    <div class="produto-card">
+      <img src="https://via.placeholder.com/600x400?text=Guardian+Roblox" alt="Personagem Guardian">
+      <p>Guardian - R$10</p>
+      <button onclick="adicionarAoCarrinho('Guardian - Avatar', 10)">Adicionar</button>
+    </div>
+    <div class="produto-card">
+      <img src="https://via.placeholder.com/600x400?text=Mystery+Pack" alt="Personagem Mystery">
+      <p>Mystery Pack - R$10</p>
+      <button onclick="adicionarAoCarrinho('Mystery Pack', 10)">Adicionar</button>
+    </div>
+  </div>
+
+  <!-- Modal do Carrinho -->
+  <div id="modalCarrinho" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="fecharCarrinho()">&times;</span>
+      <h2>Carrinho</h2>
+      <ul id="lista-carrinho"></ul>
+      <p>Total: R$<span id="total">0</span></p>
+      <button onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Roblox Characters Store</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

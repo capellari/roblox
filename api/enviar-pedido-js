@@ -1,0 +1,42 @@
+import nodemailer from "nodemailer";
+
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Método não permitido" });
+  }
+
+  const { itens } = req.body;
+  if (!itens || itens.length === 0) {
+    return res.status(400).json({ error: "Carrinho vazio" });
+  }
+
+  let total = 0;
+  const lista = itens
+    .map(i => {
+      total += i.preco * i.quantidade;
+      return `${i.quantidade}x ${i.nome} - R$${(i.preco * i.quantidade).toFixed(2)}`;
+    })
+    .join("\n");
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "teste@gmai.com",
+      subject: "Novo pedido - Roblox Characters Store",
+      text: `${lista}\n\nTotal: R$${total.toFixed(2)}`
+    });
+
+    return res.status(200).json({ ok: true });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Erro ao enviar e-mail" });
+  }
+}
